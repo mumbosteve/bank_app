@@ -109,8 +109,6 @@ void viewAccount() {
         printf("No accounts found.\n");
         return;
     }
-
-//comment
     
     printf("Enter account number to view: ");
     if (scanf("%d", &num) != 1) {
