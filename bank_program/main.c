@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+//structure to hold account details
 struct Account {
     int accountNumber;
     char name[100];
@@ -28,7 +29,8 @@ int main() {
         printf("5. Display All Accounts\n");
         printf("6. Exit\n");
         printf("Enter your choice: ");
-
+        
+//Read user choice and validate input
         if (scanf("%d", &choice) != 1) {
             printf("Invalid input! Please enter a number.\n");
             clearInputBuffer();
@@ -37,6 +39,7 @@ int main() {
 
         clearInputBuffer();
 
+        //Perform the selected operation
         switch (choice) {
             case 1: createAccount(); break;
             case 2: viewAccount(); break;
@@ -50,6 +53,7 @@ int main() {
     return 0;
 }
 
+//Function to create a new account
 void createAccount() {
     struct Account acc;
     FILE *fp = fopen("accounts.dat", "ab");
@@ -59,6 +63,7 @@ void createAccount() {
         return;
     }
 
+   //Get account number from user
     printf("Enter account number: ");
     if (scanf("%d", &acc.accountNumber) != 1) {
         printf("Invalid input for account number.\n");
@@ -68,6 +73,7 @@ void createAccount() {
     }
     clearInputBuffer();
 
+    //Get account holder's name
     printf("Enter name: ");
     if (fgets(acc.name, sizeof(acc.name), stdin) == NULL) {
         printf("Error reading name.\n");
@@ -76,6 +82,7 @@ void createAccount() {
     }
     acc.name[strcspn(acc.name, "\n")] = 0;
 
+    //Get initial account balance
     printf("Enter initial balance: ");
     if (scanf("%f", &acc.balance) != 1 || acc.balance < 0) {
         printf("Invalid balance amount.\n");
