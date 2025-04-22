@@ -71,6 +71,18 @@ void createAccount() {
         fclose(fp);
         return;
     }
+    // Preventing duplicate account numbers
+     FILE *checkFp = fopen("accounts.dat", "rb");
+struct Account temp;
+while (fread(&temp, sizeof(temp), 1, checkFp)) {
+    if (temp.accountNumber == acc.accountNumber) {
+        printf("Account number already exists.\n");
+        fclose(fp);
+        fclose(checkFp);
+        return;
+    }
+}
+fclose(checkFp);
     clearInputBuffer();
 
     //Get account holder's name
