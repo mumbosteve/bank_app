@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#define FILE_NAME "accounts.dat"
 //structure to hold account details
 struct Account {
     int accountNumber;
